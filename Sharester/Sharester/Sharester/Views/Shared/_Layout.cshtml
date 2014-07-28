@@ -27,7 +27,133 @@
         <script>
             $(document).on("mobileinit", function () {
                 $.mobile.ajaxEnabled = false;
+               
+            $(document).ready(function() {
+                $("#SearchLink").click(function () {
+                    $(".view").addClass("viewHidden").removeClass("viewVisible");
+                    $("#SearchTemplate").removeClass("viewHidden").addClass("viewVisible");
+                });
+
+                $("#PostLink").click(function() {
+                    $(".view").addClass("viewHidden").removeClass("viewVisible");
+                    $("#Post").removeClass("viewHidden").addClass("viewVisible");
+                });
+
+                $("#SummaryLink").click(function () {
+                    $(".view").addClass("viewHidden").removeClass("viewVisible");
+                    $("#Summary").removeClass("viewHidden").addClass("viewVisible");
+                });
+
+                $("#AddItem").click(function () {
+                    var $item = $(".item").first().clone();//$("<div class=\"item\"><label>Name</label> <input class=\"ItemName\" type=\"text\" /> <label>Description</label> <input class=\"ItemDescription\" type=\"text\" /> <label>Cost</label><input type=\"text\" class=\"ItemCost\" /><label>Reference Link</label><input class=\"ItemReference\" type=\"text\" /></div>");
+                    for (var i = 0; i < $item.find("input").length; i++) {
+                        $item.find("input")[i].value = '';
+                    }
+                    $("#ItemList").append($item);
+                });
+
+                $("#SearchSubmit").click(getSearch);
+
+                $("#SubmitPost").click(postItems);
+
+                function postItems() {
+                    var data = {Items: []};
+                    $(".item").each(function(index, e) {
+                        var item = {};
+                        item.Name = $(e).find(".ItemName")[0].value;
+                        item.Description = $(e).find(".ItemDescription")[0].value;
+                        item.Cost = $(e).find(".ItemCost")[0].value;
+                        item.Reference = $(e).find(".ItemReference")[0].value;
+                        item.Category = $(e).find(".ItemCategory option:selected").text();
+                        data.Items.push(item);
+                    });
+
+                    var userId = $("#Post").attr("data-userId");
+                    
+                    $.ajax({
+                        url: "api/Post/create/" + userId,
+                        type: 'PUT',
+                        dataType: 'text',
+                        data: JSON.stringify(data),
+                        success: function(response) {
+                            $("#Post #errorMessage").text("Post successfully saved.");
+
+                            var $item = $(".item").first().clone();
+                            for (var i = 0; i < $item.find("input").length; i++) {
+                                $item.find("input")[i].value = '';
+                            }
+                            $("#ItemList").html($item);
+
+                        },
+                        error: function(response) {
+                            $("#Post #errorMessage").text("Some error while posting request.");
+                        }
+                    });
+                }
+
+                function getSearch() {
+                    var query = !!$("#SearchQuery")[0].value ? $("#SearchQuery")[0].value : "All";
+                    $.ajax({
+                        url: "api/SearchItem/GetSearch/" + query + "/" + $("#SearchCategory option:selected").text(),
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            $("#SearchResults").removeClass("viewHidden")
+                                    .addClass("viewVisible")
+                                    .html('');
+                            if (response.length > 0) {
+                                response.forEach(function(item) {
+                                    var $div = $("<div/>").attr({
+                                        "data-id": item.Id,
+                                        "data-Name": item.Name
+                                    });
+                                    $div.append($("<span style='margin-right:10px;'/>").text(item.Name))
+                                        .append($("<span/>").text(item.Cost + " Rs"))
+                                        .append($("<div />").append($("<img/>").attr({
+                                            "src": getImageUrl(item.Images, item.CategoryType),
+                                            "style": "Width:150px; height:200px"
+                                        })));
+
+                                    $("#SearchResults").append($div);
+                                });
+                            } else {
+                                $("#SearchResults").html("Results not found.");
+                            }
+                        },
+                        erro: function (response) {
+                            alert(response);
+                        }
+                    });
+                }
             });
+            });
+            
+            function getImageUrl(Images, category) {
+                if (Images != undefined && Images.length > 0) {
+                    if (!!Images[0].trim()) {
+                        return Images[0].trim();
+                    } else {
+                        return getCategoryUrl(category);
+                    }
+                } else {
+                    return '';
+                }
+            }
+            
+            function getCategoryUrl(category) {
+                switch (category) {
+                    case "Furniture":
+                        return "Content/images/furniture.jpg";
+                    case "Decoration":
+                        return "Content/images/decoration.jpg";
+                    case "Electronics":
+                        return "Content/images/electronics.png";
+                    case "Sports":
+                        return "Content/images/sports.jpg";
+                    default:
+                        return "Content/images/others.jpg";
+                }
+            }
         </script>
         @Scripts.Render("~/bundles/jquerymobile")
         @RenderSection("scripts", required: false)

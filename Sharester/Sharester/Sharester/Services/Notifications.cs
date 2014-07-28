@@ -14,7 +14,7 @@ namespace Sharester.Services
         }
 
         public int UserId { get; set; }
-        public List<Notification> UserNotifications { get; set; }
+        public List<NotificationModel> UserNotifications { get; set; }
 
         public int UnreadNotifications
         {

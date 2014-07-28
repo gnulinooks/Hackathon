@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Post]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [UserId] UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES Users(userId), 
+    [Name] VARCHAR(200) NULL, 
+    [Description] VARCHAR(MAX) NULL, 
+    [Alive] BIT NOT NULL DEFAULT 1, 
+    [ItemsCount] INT NOT NULL, 
+    [ItemsSold] INT NOT NULL DEFAULT 0, 
+    [CreatedOn] DATETIME NOT NULL, 
+    [UpdatedOn] DATETIME NOT NULL
+)

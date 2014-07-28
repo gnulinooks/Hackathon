@@ -7,10 +7,10 @@ namespace Sharester.Models
 {
     public class History
     {
-        public int ItemId { get; set; }
-        public int PostId { get; set; }
-        public int OnwerId { get; set; }
-        public int BuyerId { get; set; }
+        public Guid ItemId { get; set; }
+        public Guid PostId { get; set; }
+        public Guid OnwerId { get; set; }
+        public Guid BuyerId { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
         public string ItemAvailability { get; set; }

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="46a04b87-8fb0-4d16-9abd-11c6c76f582a" ChangeDateTime="07/26/2014 09:53:50">
+    <Property Name="ElementName" Value="[dbo].[Post].[NoOfItems]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Post]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ItemsCount" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f0c8ad10-95a9-498c-b409-c407911a9c56" ChangeDateTime="07/26/2014 10:17:25">
+    <Property Name="ElementName" Value="[dbo].[Notifications].[Sernder]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Notifications]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Sender" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ca9c3ad7-5643-4f7d-95f3-6253caed422b" ChangeDateTime="07/28/2014 09:44:23">
+    <Property Name="ElementName" Value="[dbo].[Post].[CeratedOn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Post]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedOn" />
+  </Operation>
+</Operations>

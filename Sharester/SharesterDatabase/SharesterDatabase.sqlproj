@@ -58,4 +58,19 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Post.sql" />
+    <Build Include="dbo.Applications.sql" />
+    <Build Include="dbo.Memberships.sql" />
+    <Build Include="dbo.Profiles.sql" />
+    <Build Include="dbo.Roles.sql" />
+    <Build Include="dbo.Users.sql" />
+    <Build Include="dbo.UsersInRoles.sql" />
+    <Build Include="Item.sql" />
+    <Build Include="Notifications.sql" />
+    <Build Include="ItemCategory.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SharesterDatabase.refactorlog" />
+  </ItemGroup>
 </Project>

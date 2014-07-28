@@ -42,3 +42,11 @@
 .ui-btn-active  {
     text-shadow: none;
 }
+
+.viewHidden {
+    display: none;
+}
+
+.viewVisible {
+    display: block;
+}

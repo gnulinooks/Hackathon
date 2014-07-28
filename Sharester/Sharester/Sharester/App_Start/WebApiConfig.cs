@@ -20,11 +20,35 @@ namespace Sharester
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi1",
-                routeTemplate: "api/{controller}/{action}/{a}",
+                routeTemplate: "api/{controller}/GetSearch/{query}/{category}",
                 defaults: new {  },
-                constraints: new { controller = "searchitem", action = "getvalue", HttpMethod = new HttpMethodConstraint(HttpMethod.Get)}
+                constraints: new { controller = "SearchItem", HttpMethod = new HttpMethodConstraint(HttpMethod.Get)}
             );
 
+
+            #region Posts API
+            config.Routes.MapHttpRoute(
+                name: "PostGetAPI",
+                routeTemplate: "api/{controller}/posts/{postid}",
+                defaults: new { },
+                constraints: new { controller = "post", HttpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "PostPostAPI",
+                routeTemplate: "api/{controller}/post/{postid}",
+                defaults: new { },
+                constraints: new { controller = "post", HttpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "PostPutAPI",
+                routeTemplate: "api/{controller}/create/{userId}",
+                defaults: new { },
+                constraints: new { controller = "post", HttpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+            );
+
+            #endregion
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.
             // For more information, visit http://go.microsoft.com/fwlink/?LinkId=279712.

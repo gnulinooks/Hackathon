@@ -1,0 +1,7 @@
+D:\Personal\GITProjects\Hackathon\Sharester\SharesterDatabase\bin\Debug\SharesterDatabase.dacpac
+D:\Personal\GITProjects\Hackathon\Sharester\SharesterDatabase\obj\Debug\Model.xml
+D:\Personal\GITProjects\Hackathon\Sharester\SharesterDatabase\obj\Debug\refactor.xml
+D:\Personal\GITProjects\Hackathon\Sharester\SharesterDatabase\obj\Debug\postdeploy.sql
+D:\Personal\GITProjects\Hackathon\Sharester\SharesterDatabase\obj\Debug\predeploy.sql
+D:\Personal\GITProjects\Hackathon\Sharester\SharesterDatabase\obj\Debug\SharesterDatabase.dll
+D:\Personal\GITProjects\Hackathon\Sharester\SharesterDatabase\obj\Debug\SharesterDatabase.pdb

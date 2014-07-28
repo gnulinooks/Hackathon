@@ -1,19 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
-using System.Web;
+using System.Web.Helpers;
 using System.Web.Http;
-using System.Web.Mvc;
+using Newtonsoft.Json;
+using Sharester.Models;
+using Sharester.Services;
 
 namespace Sharester.Controllers
 {
     public class SearchItemController : ApiController
     {
-        public HttpResponseMessage GetValue(string a)
+        //public HttpResponseMessage GetValue(string a)
+        //{
+        //    return Request.CreateResponse(HttpStatusCode.OK, a, new HttpConfiguration());
+        //}
+
+        public HttpResponseMessage GetSearch(string query, string category)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, a, new HttpConfiguration());
+            var response = ItemService.GetItems(query, category);
+            return Request.CreateResponse(HttpStatusCode.OK, response, new HttpConfiguration());
         }
     }
 }

@@ -5,13 +5,13 @@ using System.Web;
 
 namespace Sharester.Models
 {
-    public class Notification
+    public class NotificationModel
     {
         public int Id { get; set; }
-        public int Sender { get; set; }
-        public int Receiver { get; set; }
-        public int PostId { get; set; }
-        public int ItemId { get; set; }
+        public Guid Sender { get; set; }
+        public Guid Receiver { get; set; }
+        public Guid PostId { get; set; }
+        public Guid ItemId { get; set; }
         public string Content { get; set; }
         public DateTime CreatedOn { get; set; }
         public string State { get; set; }

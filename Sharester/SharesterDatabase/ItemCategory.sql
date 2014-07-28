@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[ItemCategory]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Name] VARCHAR(200) NULL
+)
