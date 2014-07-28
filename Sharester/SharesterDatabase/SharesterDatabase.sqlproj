@@ -73,4 +73,7 @@
   <ItemGroup>
     <RefactorLog Include="SharesterDatabase.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Common.sql" />
+  </ItemGroup>
 </Project>

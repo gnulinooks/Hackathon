@@ -94,7 +94,7 @@ namespace Sharester.Services
                             Name = reader[1].ToString(),
                             Description = reader[2].ToString(),
                             Reference = reader[3].ToString(),
-                            Images = reader[4].ToString().Split(';').ToList(),
+                            Images = GetImageUrl(reader[4].ToString().Split(';').ToList(), reader[9].ToString()),
                             Cost = (double) reader[5],
                             Category = reader[9].ToString()
                         });
