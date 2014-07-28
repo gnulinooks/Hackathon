@@ -29,9 +29,10 @@ namespace Sharester.Services
 
             foreach (var item in items)
             {
+                var images = item.Images ?? new List<string>();
                 queryString += String.Format("('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'),", item.Id,
-                    item.Name.ToLowerInvariant(), item.Description, item.Reference, string.Join(";", item.Images), item.Cost, item.Availability,
-                    item.CategoryType, item.PostId, item.CreatedOn, item.UpdatedOn);
+                    item.Name.ToLowerInvariant(), item.Description, item.Reference, string.Join(";", images), item.Cost, item.Availability,
+                    item.Category, item.PostId, item.CreatedOn, item.UpdatedOn);
             }
 
             queryString = queryString.Substring(0, queryString.Length - 1);
@@ -95,7 +96,7 @@ namespace Sharester.Services
                             Reference = reader[3].ToString(),
                             Images = reader[4].ToString().Split(';').ToList(),
                             Cost = (double) reader[5],
-                            CategoryType = reader[9].ToString()
+                            Category = reader[9].ToString()
                         });
                     }
                     conn.Close();
@@ -141,7 +142,7 @@ namespace Sharester.Services
                             Reference = reader[3].ToString(),
                             Images = GetImageUrl(reader[4].ToString().Split(';').ToList(), reader[9].ToString()),
                             Cost = (double)reader[5],
-                            CategoryType = reader[9].ToString()
+                            Category = reader[9].ToString()
                         });
                     }
                     conn.Close();

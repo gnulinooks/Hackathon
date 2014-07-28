@@ -68,7 +68,7 @@ namespace Sharester.Services
                             Cost = (double) reader[12],
                             Availability =
                                 (ItemAvailability) Enum.Parse(typeof (ItemAvailability), reader[13].ToString()),
-                            CategoryType = reader[15].ToString()
+                            Category = reader[15].ToString()
                         });
                     }
 

@@ -21,7 +21,7 @@ namespace Sharester.Models
         public ItemAvailability Availability { get; set; }
         public bool Negotiable { get; set; }
         public bool Bidding { get; set; }
-        public string CategoryType { get; set; }
+        public string Category { get; set; }
         public Guid PostId { get; set; }
         public DateTime CreatedOn { get; set; }
 
