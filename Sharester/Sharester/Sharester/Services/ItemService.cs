@@ -227,5 +227,47 @@ namespace Sharester.Services
 
             return images;
         }
+
+        public static UserModel GetUser(Guid itemId)
+        {
+            UserModel user = new UserModel();
+            try
+            {
+                using (
+                    SqlConnection conn =
+                        new SqlConnection(
+                            ConfigurationManager.ConnectionStrings[Constants.Constants.ConnectionString]
+                                .ConnectionString))
+                {
+                    var queryString = string.Format("select *");
+                    SqlCommand cmd = new SqlCommand(queryString, conn);
+
+                    conn.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        //item = new Item()
+                        //{
+                        //    Id = (Guid)reader[0],
+                        //    Name = reader[1].ToString(),
+                        //    Description = reader[2].ToString(),
+                        //    Reference = reader[3].ToString(),
+                        //    Images = GetImageUrl(reader[4].ToString().Split(';').ToList(), reader[9].ToString()),
+                        //    Cost = (double)reader[5],
+                        //    Category = reader[9].ToString()
+                        //};
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return user;
+        }
     }
 }

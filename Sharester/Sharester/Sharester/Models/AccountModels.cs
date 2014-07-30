@@ -63,4 +63,12 @@ namespace Sharester.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class UserModel
+    {
+        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+    }
 }

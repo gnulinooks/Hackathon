@@ -67,6 +67,8 @@ namespace Sharester.Controllers
         public ActionResult Item(Guid itemId)
         {
             Item item = ItemService.GetItem(itemId);
+            //UserModel user = ItemService
+            ViewBag.item = item;
             return View(item);
         }
 

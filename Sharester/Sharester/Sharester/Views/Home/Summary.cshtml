@@ -4,27 +4,68 @@
 }
 
 <div id="Summary" class="view">
+    <div style="float:right;margin-top: -30px;"><img id="notificationImage" src="../Content/images/notification.png" style="margin-right: -10px;height: 60px;width: 60px;"/>
+    <img id="historyImage" src="../Content/images/folder.png" style="margin-right: -10px; height: 60px; width: 60px;" /></div>
+    <div class="clearboth"></div>
+    <div id="summaryContent" class="view">
     @{
-        if (User.Identity.IsAuthenticated)
-        {
-            var user = UserService.GetUser(User.Identity.Name);
-            var items = ItemService.GetUserPostedItems(@user.UserId);
-            foreach (var item in @items)
-            {
+    if (User.Identity.IsAuthenticated)
+    {
 
-                <div data-id="@item.Id" data-name="item.Name">
-                    <span style="margin-right: 10px;"><b>@item.Name</b></span>
-                    <span>@item.Cost Rs</span>
-                    <div>
-                        <img src="../@item.Images[0]" style="width: 150px;height:200px"/>
-                    </div>
-                </div>
-            }
+        var user = UserService.GetUser(User.Identity.Name);
+        var items = ItemService.GetUserPostedItems(@user.UserId);
+        <p>Active items:</p>
+        foreach (var item in @items)
+        {
+        <div data-id="@item.Id" data-name="item.Name">
+            <span style="margin-right: 10px;"><b>@item.Name</b></span>
+            <span>@item.Cost Rs</span>
+            <div>
+                <img class="ui-corner-all" src="../@item.Images[0]" style="width: 150px;height:200px" />
+            </div>
+        </div>
         }
+         
+    }
         else
         {
             <span>Login to view your post summary.</span>
         }
 
     }
+    </div>
+    <div id="notificationContent" class="view viewHidden">
+        @{
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = UserService.GetUser(User.Identity.Name);
+                var notifications = Notifications.GetNotification(@user.UserId);
+                <p><b>Notifications</b></p>
+                foreach (var notification in @notifications)
+                {
+                    if (@notification.State == "Read")
+                    {
+                        <p id="notificationRow"><span style="margin-right: 10px;"><img src="../Content/images/arrow.png" style="width: 20px;height: 20px;margin-left: -7px;"/>@notification.SenderName</span>
+                            <span style="margin-right: 10px;">@notification.ItemName</span>
+                            <span> @notification.CreatedOn.ToString("d")</span>
+                        </p>
+                        <p >@notification.Content</p>
+                    }
+                    else
+                    {
+                        <b>
+                        <p><span style="margin-right: 10px;"><img src="../Content/images/arrow.png" style="width: 20px; height: 20px; margin-left: -7px;" />@notification.SenderName</span>
+                            <span style="margin-right: 10px;">@notification.ItemName</span>
+                            <span> @notification.CreatedOn.ToString("d")</span>
+                        </p>
+                            <p>@notification.Content</p>
+                        </b>
+                    }
+                }
+            }
+        }
+    </div>
+    <div id="historyContent" class="view viewHidden">
+
+    </div>
 </div>

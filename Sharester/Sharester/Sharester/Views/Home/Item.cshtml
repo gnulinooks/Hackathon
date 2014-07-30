@@ -2,12 +2,23 @@
 @model Sharester.Models.Item
 
 @{
-    ViewBag.Title = "Item";
+    ViewBag.Title = "Sharester >> Item";
 }
-
-<h2>Item</h2>
 
     
 <div>
-    @itemId
+    <p><b>Name:</b> @ViewBag.item.Name</p>
+    <p><b>Cost:</b> @ViewBag.item.Cost Rs</p>
+    <div>
+        <img class="ui-corner-all" src="../@ViewBag.item.Images[0]" style="width: 150px;height: 200px"/>
+    </div>
+    <div id="notifyOwnerRequest">
+        <p>Interested in item?</p>
+        <button value="NotifyOwner" id="notifyOwnerButton">Notify Owner</button>
+    </div>
+    <div id="notifyOwnerForm" class="viewHidden">
+        <b>Message: </b>
+        <input id="notificationContent" type="text"/>
+        <button value="NotificationSubmit" id="NotificationSubmit">Submit</button>
+    </div>
 </div>

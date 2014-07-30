@@ -34,23 +34,39 @@
                 $.mobile.ajaxEnabled = false;
                
             $(document).ready(function() {
-                $("#SearchLink").click(function () {
-                    $(".view").addClass("viewHidden").removeClass("viewVisible");
-                    $("#SearchTemplate").removeClass("viewHidden").addClass("viewVisible");
+
+                $("#notifyOwnerButton").click(function() {
+                    $("#notifyOwnerRequest").addClass("viewHidden");
+                    $("#notifyOwnerForm").addClass("viewVisible").removeClass("viewHidden");
                 });
 
-                $("#PostLink").click(function() {
-                    $(".view").addClass("viewHidden").removeClass("viewVisible");
-                    $("#Post").removeClass("viewHidden").addClass("viewVisible");
+                $("#NotificationSubmit").click(function () {
+                    $("#notifyOwnerForm").html("Query has been sent to owner.");
                 });
 
-                $("#SummaryLink").click(function () {
-                    $(".view").addClass("viewHidden").removeClass("viewVisible");
-                    $("#Summary").removeClass("viewHidden").addClass("viewVisible");
+                $("#notificationImage").click(function () {
+                    $("#Summary").find(".view").addClass("viewHidden").removeClass("viewVisible");
+                    $("#notificationContent").removeClass("viewHidden").addClass("viewVisible");
+                });
+                $("#historyImage").click(function () {
+                    
+                });
+
+                //$("#notificationRow").click(function() {
+                //    if($(this).siblings().hasClass("viewHidden")){
+                //        $(this).siblings().removeClass("viewHidden").addClass("viewVisible");
+                //    } else {
+                //        $(this).siblings().addClass("viewHidden").removeClass("viewVisible");
+                //    }
+                //});
+
+                $("#SearchCategoryDomesticHelp").change(function() {
+                    $("#domesticHelpList div").addClass("viewHidden");
+                    $("#domesticHelpList").find("." + $("#SearchCategoryDomesticHelp option:selected").text().toLowerCase()).removeClass("viewHidden");
                 });
 
                 $("#AddItem").click(function () {
-                    var $item = $(".item").first().clone();//$("<div class=\"item\"><label>Name</label> <input class=\"ItemName\" type=\"text\" /> <label>Description</label> <input class=\"ItemDescription\" type=\"text\" /> <label>Cost</label><input type=\"text\" class=\"ItemCost\" /><label>Reference Link</label><input class=\"ItemReference\" type=\"text\" /></div>");
+                    var $item = $(".item").first().clone();
                     for (var i = 0; i < $item.find("input").length; i++) {
                         $item.find("input")[i].value = '';
                     }
@@ -114,12 +130,12 @@
                                     });
                                     $div.append($("<span style='margin-right:10px;'/>").html("<b>" + item.Name + "</b>"))
                                         .append($("<span/>").text(item.Cost + " Rs"))
-                                        .append($("<div />").append($("<img/>").attr({
+                                        .append($("<div />").append($("<img class=\"ui-corner-all\"/>").attr({
                                             "src": getImageUrl(item.Images, item.CategoryType),
                                             "style": "Width:150px; height:200px"
                                         })));
-
-                                    $("#SearchResults").append($div);
+                                    var $a = $("<a />").attr({ "href": "item?itemid=" + item.Id, "style":"text-decoration:none; color: black;" }).append($div);
+                                    $("#SearchResults").append($a);
                                 });
                             } else {
                                 $("#SearchResults").html("Results not found.");
