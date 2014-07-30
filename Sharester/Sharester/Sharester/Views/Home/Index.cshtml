@@ -6,105 +6,11 @@
 
 <ul data-role="listview" data-inset="true">
     <!----li data-role="list-divider">Navigation</!--li -->
-    @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
-    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-    <li class="ui-corner-all" style="display:inline"><div id="SummaryLink" style="display:inline">Summary</div></li>
-    <li class="ui-corner-all" style="display:inline"><div id="SearchLink" style="display:inline">Buy</div></li>
-    <li class="ui-corner-all" style="display:inline"><div id="PostLink" style="display:inline">Sell</div></li>
+    <li class="ui-corner-all">@Html.ActionLink("Summary", "Summary", "Home")</li>
+    <li class="ui-corner-all">@Html.ActionLink("Buy", "Buy", "Home")</li>
+    <li class="ui-corner-all">@Html.ActionLink("Sell", "Sell", "Home")</li>
+    <li class="ui-corner-all">@Html.ActionLink("Suggestions", "Suggestions", "Home")</li>
+    <li class="ui-corner-all">@Html.ActionLink("RealEstate", "RealEstate", "Home")</li>
+    <li class="ui-corner-all">@Html.ActionLink("DomesticHelp", "DomesticHelp", "Home")</li>
+    <li class="ui-corner-all">@Html.ActionLink("Others", "Others", "Home")</li>
 </ul>
-
-<!--Search Template-->
-<div class="view viewHidden" id="SearchTemplate">
-    <label>Search Query</label>
-    <input id="SearchQuery" type="text" />
-    <label>Category</label>
-    <select id="SearchCategory">
-        <option>Furniture</option>
-        <option>Decoration</option>
-        <option>Sports</option>
-        <option>Electronics</option>
-        <option>Others</option>
-        <option>All</option>
-    </select>
-    <button id="SearchSubmit">Submit</button>
-</div>
-
-<!--Search Results-->
-<div id="SearchResults" class="view viewHidden">
-
-</div>
-
-<!--Summary Template-->
-<div id="Summary" class="view">
-    @{
-        if (User.Identity.IsAuthenticated)
-        {
-            <span>Posted Items</span>
-           var user = UserService.GetUser(User.Identity.Name);
-           var items = ItemService.GetUserPostedItems(@user.UserId);
-            foreach (var item in @items)
-            {
-                
-                <div data-id="@item.Id" data-name="item.Name">
-                    <span style="margin-right: 10px;">@item.Name</span>
-                    <span>@item.Cost Rs</span>
-                    <div>
-                        <img src="@item.Images[0]"/>
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <span>Login to view your post summary.</span>
-        }
-
-    }
-</div>
-
-@{
-    if (User.Identity.IsAuthenticated)
-    {
-        var @user =
-        UserService.GetUser(@User.Identity.Name);
-        <!--Post Template-->
-        <div id="Post" class="view viewHidden" data-userId="@user.UserId">
-            <div id="errorMessage"></div>
-            @*<label>Post Name</label>
-    <input id="PostName" type="text" />
-    <label>Description</label>
-    <textarea id="PostDescription"></textarea>
-    <hr />
-    <label><b>Add Items</b></label>*@
-            <div id="ItemList">
-                <div class="item">
-                    <h3>Item</h3>
-                    <label>Name</label>
-                    <input class="ItemName" type="text" />
-                    <label>Description</label>
-                    <input class="ItemDescription" type="text" />
-                    <label>Cost</label>
-                    <input type="text" class="ItemCost" />
-                    <label>Category</label>
-                    <select class="ItemCategory">
-                        <option>Furniture</option>
-                        <option>Decoration</option>
-                        <option>Sports</option>
-                        <option>Electronics</option>
-                        <option>Others</option>
-                    </select>
-                    <label>Reference Link</label>
-                    <input class="ItemReference" type="text" />
-                </div>
-            </div>
-
-            <button id="AddItem">Add more</button>
-            <!--div class="ui-corner-all ui-li ui-li-static ui-btn-up-b" style="width: 80px;">Add more</!--div-->
-            <button id="SubmitPost">Submit</button>
-        </div>
-    }
-    else
-    {
-        <div>Please login first.</div>
-    }
-}

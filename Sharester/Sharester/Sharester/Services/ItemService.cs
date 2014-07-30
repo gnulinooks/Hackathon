@@ -60,6 +60,47 @@ namespace Sharester.Services
             return true;
         }
 
+        public static Item GetItem(Guid ItemId)
+        {
+            Item item = new Item();
+            try
+            {
+                using (
+                    SqlConnection conn =
+                        new SqlConnection(
+                            ConfigurationManager.ConnectionStrings[Constants.Constants.ConnectionString]
+                                .ConnectionString))
+                {
+                    var queryString = string.Format("select * from Item where id = '{0}'", ItemId);
+                    SqlCommand cmd = new SqlCommand(queryString, conn);
+
+                    conn.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        item = new Item()
+                        {
+                            Id = (Guid) reader[0],
+                            Name = reader[1].ToString(),
+                            Description = reader[2].ToString(),
+                            Reference = reader[3].ToString(),
+                            Images = GetImageUrl(reader[4].ToString().Split(';').ToList(), reader[9].ToString()),
+                            Cost = (double) reader[5],
+                            Category = reader[9].ToString()
+                        };
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return item;
+        }
+
         public static List<Item> GetItems(string query, string category)
         {
             List<Item> items = new List<Item>();

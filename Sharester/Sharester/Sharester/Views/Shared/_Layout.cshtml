@@ -14,15 +14,20 @@
                 @if (IsSectionDefined("Header")) {
                     @RenderSection("Header")
                 } else {
-                    <h1>@ViewBag.Title</h1>
+                    <h1><a href="/" style="text-decoration: none; color:white">@ViewBag.Title</a></h1>
                     @Html.Partial("_LoginPartial")
                 }
             </div>
             <div data-role="content">
                 @RenderBody()
             </div>
-        </div>
 
+            <div id="footer">
+                @Html.ActionLink("About", "About", "Home")
+                @Html.ActionLink("Contact us", "Contact", "Home")
+                @Html.ActionLink("Policy", "Policy", "Home")
+            </div>
+        </div>
         @Scripts.Render("~/bundles/jquery")
         <script>
             $(document).on("mobileinit", function () {
@@ -71,7 +76,7 @@
                     var userId = $("#Post").attr("data-userId");
                     
                     $.ajax({
-                        url: "api/Post/create/" + userId,
+                        url: "../api/Post/create/" + userId,
                         type: 'PUT',
                         dataType: 'text',
                         data: JSON.stringify(data),
@@ -94,7 +99,7 @@
                 function getSearch() {
                     var query = !!$("#SearchQuery")[0].value ? $("#SearchQuery")[0].value : "All";
                     $.ajax({
-                        url: "api/SearchItem/GetSearch/" + query + "/" + $("#SearchCategory option:selected").text(),
+                        url: "../api/SearchItem/GetSearch/" + query + "/" + $("#SearchCategory option:selected").text(),
                         type: 'GET',
                         dataType: 'json',
                         success: function (response) {
@@ -107,7 +112,7 @@
                                         "data-id": item.Id,
                                         "data-Name": item.Name
                                     });
-                                    $div.append($("<span style='margin-right:10px;'/>").text(item.Name))
+                                    $div.append($("<span style='margin-right:10px;'/>").html("<b>" + item.Name + "</b>"))
                                         .append($("<span/>").text(item.Cost + " Rs"))
                                         .append($("<div />").append($("<img/>").attr({
                                             "src": getImageUrl(item.Images, item.CategoryType),
@@ -131,7 +136,7 @@
             function getImageUrl(Images, category) {
                 if (Images != undefined && Images.length > 0) {
                     if (!!Images[0].trim()) {
-                        return Images[0].trim();
+                        return '../' + Images[0].trim();
                     } else {
                         return getCategoryUrl(category);
                     }
@@ -143,15 +148,15 @@
             function getCategoryUrl(category) {
                 switch (category) {
                     case "Furniture":
-                        return "Content/images/furniture.jpg";
+                        return "../Content/images/furniture.jpg";
                     case "Decoration":
-                        return "Content/images/decoration.jpg";
+                        return "../Content/images/decoration.jpg";
                     case "Electronics":
-                        return "Content/images/electronics.png";
+                        return "../Content/images/electronics.png";
                     case "Sports":
-                        return "Content/images/sports.jpg";
+                        return "../Content/images/sports.jpg";
                     default:
-                        return "Content/images/others.jpg";
+                        return "../Content/images/others.jpg";
                 }
             }
         </script>

@@ -1,0 +1,30 @@
+﻿@using Sharester.Services
+@{
+    ViewBag.Title = "Sharester > Summary";
+}
+
+<div id="Summary" class="view">
+    @{
+        if (User.Identity.IsAuthenticated)
+        {
+            var user = UserService.GetUser(User.Identity.Name);
+            var items = ItemService.GetUserPostedItems(@user.UserId);
+            foreach (var item in @items)
+            {
+
+                <div data-id="@item.Id" data-name="item.Name">
+                    <span style="margin-right: 10px;"><b>@item.Name</b></span>
+                    <span>@item.Cost Rs</span>
+                    <div>
+                        <img src="../@item.Images[0]" style="width: 150px;height:200px"/>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <span>Login to view your post summary.</span>
+        }
+
+    }
+</div>

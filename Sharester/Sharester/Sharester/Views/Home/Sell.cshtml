@@ -1,0 +1,51 @@
+﻿@using Sharester.Services
+
+@{
+    ViewBag.Title = "Sharester > Sell";
+}
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        var @user =
+        UserService.GetUser(@User.Identity.Name);
+        <!--Post Template-->
+        <div id="Post" class="view" data-userid="@user.UserId">
+            <div id="errorMessage"></div>
+            @*<label>Post Name</label>
+                <input id="PostName" type="text" />
+                <label>Description</label>
+                <textarea id="PostDescription"></textarea>
+                <hr />
+                <label><b>Add Items</b></label>*@
+            <div id="ItemList">
+                <div class="item">
+                    <h3>Item</h3>
+                    <label>Name</label>
+                    <input class="ItemName" type="text" />
+                    <label>Description</label>
+                    <input class="ItemDescription" type="text" />
+                    <label>Cost</label>
+                    <input type="text" class="ItemCost" />
+                    <label>Category</label>
+                    <select class="ItemCategory">
+                        <option>Furniture</option>
+                        <option>Decoration</option>
+                        <option>Sports</option>
+                        <option>Electronics</option>
+                        <option>Others</option>
+                    </select>
+                    <label>Reference Link</label>
+                    <input class="ItemReference" type="text" />
+                </div>
+            </div>
+
+            <button id="AddItem">Add more</button>
+            <!--div class="ui-corner-all ui-li ui-li-static ui-btn-up-b" style="width: 80px;">Add more</!--div-->
+            <button id="SubmitPost">Submit</button>
+        </div>
+    }
+    else
+    {
+        <div>Please login first.</div>
+    }
+}

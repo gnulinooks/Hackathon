@@ -53,4 +53,9 @@ namespace Sharester.Models
             }
         }
     }
+
+    public class ItemViewModel
+    {
+        public Item Item { get; set; }
+    }
 }

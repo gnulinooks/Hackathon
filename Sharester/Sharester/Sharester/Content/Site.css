@@ -50,3 +50,7 @@
 .viewVisible {
     display: block;
 }
+#footer {
+    font-size: 10px;
+    text-align: center;
+}

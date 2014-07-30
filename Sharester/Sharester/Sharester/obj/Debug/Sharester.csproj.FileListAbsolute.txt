@@ -274,3 +274,5 @@ D:\github\Hackathon\Sharester\Sharester\Sharester\bin\zh-Hant\System.Spatial.res
 D:\github\Hackathon\Sharester\Sharester\Sharester\obj\Debug\Sharester.csprojResolveAssemblyReference.cache
 D:\github\Hackathon\Sharester\Sharester\Sharester\obj\Debug\Sharester.dll
 D:\github\Hackathon\Sharester\Sharester\Sharester\obj\Debug\Sharester.pdb
+D:\Personal\GITProjects\Hackathon\Sharester\Sharester\Sharester\bin\Content\images\decoration.jpg
+D:\Personal\GITProjects\Hackathon\Sharester\Sharester\Sharester\bin\Content\images\furniture.jpg
